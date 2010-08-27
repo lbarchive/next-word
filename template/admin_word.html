@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>next->word: Admin</title>
+</head>
+<body>
+    {{ message }}
+    <table>
+        <tr>
+            <th><a href="{{ headlink_word|urlencode }}">Word</a></th>
+            <th><a href="{{ headlink_added|urlencode }}">Added</a></th>
+            <th>Starts</th>
+            <th>Ends</th>
+            <th>Skips</th>
+            <th><a href="{{ headlink_enabled|urlencode }}">Enabled</a></th>
+        </tr>
+    {% for word in words %}
+        <tr>
+            <td><a href="/word/{{ word.word|urlencode }}">{{ word.display_word }}</a></td>
+            <td>{{ word.added }}</td>
+            <td>{{ word.starts }}</td>
+            <td>{{ word.ends }}</td>
+            <td>{{ word.skips }}</td>
+            <td><a href="{{ current_uri|urlencode }}&toggle={{ word.word|urlencode }}">{{ word.enabled }}</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

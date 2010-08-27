@@ -1,0 +1,14 @@
+<form action="" method="post">
+<div>
+<h2>Linking this word</h2>
+{{ req.word.display_word|default:"" }}-&gt;<input id="next" type="text" name="next" value="{{ next|escape }}"/>
+{# maybe not a good idea to have three submits in a form #}
+<button type="submit" name="action" value="link">Get Next!</button>
+<button type="submit" name="action" value="skip">Skip &raquo;</button>
+<input type="hidden" name="req_word" value="{{ req.word.word }}"/>
+</div>
+</form>
+<div>
+<h2>Is it bad?</h2>
+Is &ldquo;{{ req.word.display_word|default:"" }}&rdquo; not a good word? Leave your suggestion in <a href="/word/{{ req.word.word|urlencode }}">its profile page</a>.
+</div>

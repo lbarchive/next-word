@@ -1,0 +1,63 @@
+{% include "header.html" %}
+</head>
+<body> 
+<h1>Word &ldquo;{{ word.display_word|escape }}&rdquo;</h1>
+<h2>Profile</h2>
+    <table>
+    <tr>
+        <td>Word</td>
+        <td>{{ word.display_word }}</td>
+    </tr>
+    <tr>
+        <td>Added</td>
+        <td>{{ word.added }}</td>
+    </tr>
+    <tr>
+        <td>Link-outs</td>
+        <td>{{ word.starts }} time{{ word.starts|pluralize }}</td>
+    </tr>
+    <tr>
+        <td>Link-ins</td>
+        <td>{{ word.ends }} time{{ word.ends|pluralize }}</td>
+    </tr>
+    </table>
+<h2>Top Ins</h2>
+    <div id="ins">
+    <table>
+        <tr>
+            <th colspan="3">Link</th>
+            <th>Percent</th>
+        </tr>
+        {% for link in top_in %}
+        <tr>
+            <td><a href="/word/{{ link.start.word|urlencode }}">{{ link.start.display_word|escape }}</a></td>
+            <td><a href="/link/{{ link.start.word|urlencode }}/{{ link.end.word|urlencode }}">-&gt;</a></td>
+            <td><a href="/word/{{ link.end.word|urlencode }}">{{ link.end.display_word|escape }}</a></td>
+            <td>{{ link.percent|floatformat:2 }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <small>Last updated {{ top_in_ago }} minute{{ top_in_ago|pluralize }} ago</small>
+    </div>
+<h2>Top Outs</h2>
+    <div id="outs">
+    <table>
+        <tr>
+            <th colspan="3">Link</th>
+            <th>Percent</th>
+        </tr>
+        {% for link in top_out %}
+        <tr>
+            <td><a href="/word/{{ link.start.word|urlencode }}">{{ link.start.display_word|escape }}</a></td>
+            <td><a href="/link/{{ link.start.word|urlencode }}/{{ link.end.word|urlencode }}">-&gt;</a></td>
+            <td><a href="/word/{{ link.end.word|urlencode }}">{{ link.end.display_word|escape }}</a></td>
+            <td>{{ link.percent|floatformat:2 }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <small>Last updated {{ top_out_ago }} minute{{ top_out_ago|pluralize }} ago</small>
+    </div>
+{% include "discussion.html" %}
+{% include "footer.html" %}
+</body>
+</html>

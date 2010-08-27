@@ -1,0 +1,21 @@
+application: next-word
+version: 2
+runtime: python
+api_version: 1
+
+handlers:
+- url: /robots.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt
+
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+
+- url: /gplv3.png
+  static_files: static/images/gplv3-88x31.png
+  upload: static/images/gplv3-88x31.png
+
+- url: .*
+  script: main.py
+

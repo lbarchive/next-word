@@ -1,0 +1,31 @@
+{% include "header.html" %}
+</head>
+<body> 
+<h1>Link {{ link.start.display_word|escape }} -&gt; {{ link.end.display_word|escape }}</h1>
+<h2>Profile</h2>
+    <table>
+    <tr>
+        <td>Link</td>
+        <td>
+            <a href="/word/{{ link.start.word|urlencode }}">{{ link.start.display_word|escape }}</a> -&gt;
+            <a href="/word/{{ link.end.word|urlencode }}">{{ link.end.display_word|escape }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>Added</td>
+        <td>{{ link.added }}</td>
+    </tr>
+    <tr>
+        <td>Count</td>
+        <td>{{ link.count }} time{{ link.count|pluralize }}</td>
+    </tr>
+    </table>
+<h2>Last 30 Days</h2>
+<div>
+    <img src="{{ month_chart }}" alt="Month Chart"/><br/>
+    <small>Last updated {{ month_chart_ago }} minute{{ month_chart_ago|pluralize }} ago</small>
+</div>
+{% include "discussion.html" %}
+{% include "footer.html" %}
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% include "header.html" %}
+</head>
+<body>
+<h1>Statistics</h1>
+<h2>Counts</h2>
+    <div>
+    <table>
+        <tr><th>Type</th><th>Count</th><th>Last Updated</th></tr>
+        <tr><td>Word</td><td>{{ word_count }}</td><td>{{ word_count_ago }} minute{{ word_count_ago|pluralize }} ago</td></tr>
+        <tr><td>Unique Link</td><td>{{ unique_link_count }}</td><td rowspan="2">{{ link_count_ago }} minute{{ link_count_ago|pluralize }} ago</td></tr>
+        <tr><td>Link</td><td>{{ link_count }}</td></tr>
+    </table>
+    </div>
+
+<h2>Top Links</h2>
+    <div id="top-links">
+    <table>
+        <tr>
+            <th colspan="3">Link</th>
+            <th>Ratio</th>
+        </tr>
+        {% for link in top_links %}
+        <tr>
+            <td><a href="/word/{{ link.start.word|urlencode }}">{{ link.start.display_word|escape }}</a></td>
+            <td><a href="/link/{{ link.start.word|urlencode }}/{{ link.end.word|urlencode }}">-&gt;</a></td>
+            <td><a href="/word/{{ link.end.word|urlencode }}">{{ link.end.display_word|escape }}</a></td>
+            <td>{{ link.percent|floatformat:2 }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <small>Last updated {{ top_links_ago }} minute{{ top_links_ago|pluralize }} ago</small>
+    </div>
+
+<h2>New Words</h2>
+    <div id="new-words">
+    <table>
+        <tr>
+            <th>Word</th>
+            <th>Added</th>
+        </tr>
+        {% for word in new_words %}
+        <tr>
+            <td><a href="/word/{{ word.word|urlencode }}">{{ word.display_word|escape }}</a></td>
+            <td>{{ word.added }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <small>Last updated {{ new_words_ago }} minute{{ new_words_ago|pluralize }} ago</small>
+    </div>
+
+<h2>New Links</h2>
+    <div id="new-links">
+    <table>
+        <tr>
+            <th colspan="3">Link</th>
+            <th>Added</th>
+        </tr>
+        {% for link in new_links %}
+        <tr>
+            <td><a href="/word/{{ link.start.word|urlencode }}">{{ link.start.display_word|escape }}</a></td>
+            <td><a href="/link/{{ link.start.word|urlencode }}/{{ link.end.word|urlencode }}">-&gt;</a></td>
+            <td><a href="/word/{{ link.end.word|urlencode }}">{{ link.end.display_word|escape }}</a></td>
+            <td>{{ link.added }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <small>Last updated {{ new_links_ago }} minute{{ new_links_ago|pluralize }} ago</small>
+    </div>
+
+{% include "footer.html" %}
+</body>
+</html>
