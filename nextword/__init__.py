@@ -1,5 +1,5 @@
 #
-# Copyright 2008 Yu-Jie Lin
+# Copyright 2008, 2010 Yu-Jie Lin
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -290,7 +290,7 @@ def add_report(IP, word, suggestion):
 def get_gchart_month(data, date_range):
     c = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     # Normalize data
-    max_value = max(data)
+    max_value = max(data) or 1
     norm_data = "".join([c[int(61.0 * count / max_value)] for count in data])
     # FIXME max_value = 1
     return "http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;\
