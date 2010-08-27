@@ -16,6 +16,10 @@ handlers:
   static_files: static/images/gplv3-88x31.png
   upload: static/images/gplv3-88x31.png
 
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+
 - url: .*
   script: main.py
 
