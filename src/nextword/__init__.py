@@ -293,9 +293,9 @@ def get_gchart_month(data, date_range):
     max_value = max(data) or 1
     norm_data = "".join([c[int(61.0 * count / max_value)] for count in data])
     # FIXME max_value = 1
-    return "http://chart.apis.google.com/chart?cht=lc&amp;chs=200x125&amp;\
+    return "http://chart.apis.google.com/chart?cht=lc&amp;chs=640x200&amp;\
 chd=s:%s&amp;chco=224499&amp;chxt=x,y&amp;chxl=0:|%s|%s|1:||%d|%d&amp;\
-chm=B,76A4FB,0,0,0" \
+chm=B,76A4FB,0,0,0&chf=bg,s,cccccc" \
     % (norm_data, date_range[0].strftime('%b %d'),
         date_range[1].strftime('%b %d'), max_value / 2, max_value)
 

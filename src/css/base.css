@@ -44,10 +44,52 @@ input:focus {
 background-color: #848;
 }
 
+/* Message Box */
+
+#message {
+background-color: #ffc0cb;
+border: 0px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+color: #c00;
+padding: 0.5em;
+}
+
+#message.error {
+background-color: #f44;
+color: #fff;
+}
+
 /* Link Form Page */
 
 #link-form {
 font-size: 1.2em;
+}
+
+#linked-word {
+font-size: 2em;
+text-align: center;
+}
+
+#link-form input[type=text] {
+font-size: 2em;
+text-align: center;
+width: 100%;
+}
+
+/* Word Page */
+
+#ins table,
+#outs table {
+width: 100%;
+}
+
+#ins table tr > th:nth-child(2),
+#ins table tr > td:nth-child(4),
+#outs table tr > th:nth-child(2),
+#outs table tr > td:nth-child(4) {
+text-align: right;
 }
 
 /* Statistics Page */

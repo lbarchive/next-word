@@ -41,8 +41,7 @@ from nextword import model
 
 
 def get_message_box(msg, css_class='message'):
-    return """<div id="message" class="%s" style="border: 1px solid
-black">%s</div>""" % (css_class, msg)
+    return """<div id="message" class="%s">%s</div>""" % (css_class, msg)
 
 
 def get_relative_time(t):
@@ -77,7 +76,7 @@ class MainHandler(webapp.RequestHandler):
                     # Must be enabled
                     if next_word and next_word.enabled:
                         nextword.increase_linkcount(req['word'], next_word)
-                        message = get_message_box('%s->%s added' % (
+                        message = get_message_box('%s -> %s added.' % (
                             req['word'].display_word, next_word.display_word))
 
                         top_out, top_out_ago = req['word']._get_top_out()
@@ -92,7 +91,8 @@ class MainHandler(webapp.RequestHandler):
                         req = nextword.request_word(IP)
                     else:
                         message = get_message_box(
-                            '&ldquo;%s&rdquo; is not valid word!' % next)
+                            '&ldquo;%s&rdquo; is not valid word!' % next,
+                            'error')
                 elif action == 'skip':
                     nextword.increase_word_skips(req['word'])
                     req = nextword.request_word(IP)
@@ -117,7 +117,7 @@ class MainHandler(webapp.RequestHandler):
         template_values = {
             'title': 'What Next?',
             'req': req,
-            'linkline_ascii': '+%s+' % ('-' * len(req['word'].display_word)),
+            'linkline_ascii': '&nbsp;%sv' % ('&nbsp;' * len(req['word'].display_word)),
             'next': next,
             'top_out': top_out,
             'top_out_ago': top_out_ago,

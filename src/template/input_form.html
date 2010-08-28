@@ -1,12 +1,14 @@
 <h2>Link this word</h2>
 <form action="" method="post">
 <div id="link-form">
-{{ req.word.display_word|default:"" }}-+<br/>
-{{ linkline_ascii }}<br/>
-+-&gt; <input id="next" type="text" name="next" value="{{ next|escape }}" size="16"/>
+<div id="linked-word">{{ req.word.display_word|default:"" }}</div>
+<div style="text-align:center">|</div>
+<div style="text-align:center">|</div>
+<div style="text-align:center">\|/</div>
+<input id="next" type="text" name="next" value="{{ next|escape }}"/><br/><br/>
 {# maybe not a good idea to have three submits in a form #}
 <button type="submit" name="action" value="link">Get Next!</button>
-<button type="submit" name="action" value="skip">Skip &raquo;</button>
+<button type="submit" name="action" value="skip">Skip ==&gt;</button>
 <input type="hidden" name="req_word" value="{{ req.word.word }}"/>
 </div>
 </form>
