@@ -1,0 +1,9 @@
+@import url(/font/stylesheet.css);
+
+* {
+font-family: "M+ 1m", monospace;
+}
+
+body {
+width: 640px;
+}
