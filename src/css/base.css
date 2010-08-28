@@ -5,7 +5,41 @@ font-family: "M+ 1m", monospace;
 }
 
 body {
+background-color: #ccc;
+color: #444;
 width: 640px;
+}
+
+a {
+color: #44f;
+}
+
+a:visited {
+color: #c4c;
+}
+
+a:hover {
+color: #4cc;
+}
+
+button,
+input {
+background-color: #888;
+border: none;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px; 
+color: #ccc;
+}
+
+button:hover,
+input:hover {
+color: #fcc;
+}
+
+button:focus,
+input:focus {
+background-color: #848;
 }
 
 #counts table,
