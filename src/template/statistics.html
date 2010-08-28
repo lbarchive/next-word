@@ -3,7 +3,7 @@
 <body>
 <h1>Statistics</h1>
 <h2>Counts</h2>
-    <div>
+    <div id="counts">
     <table>
         <tr><th>Type</th><th>Count</th><th>Last Updated</th></tr>
         <tr><td>Word</td><td>{{ word_count }}</td><td>{{ word_count_ago }} minute{{ word_count_ago|pluralize }} ago</td></tr>
@@ -28,7 +28,7 @@
         </tr>
         {% endfor %}
     </table>
-    <small>Last updated {{ top_links_ago }} minute{{ top_links_ago|pluralize }} ago</small>
+    <p>Last updated {{ top_links_ago }} minute{{ top_links_ago|pluralize }} ago</p>
     </div>
 
 <h2>New Words</h2>
@@ -45,7 +45,7 @@
         </tr>
         {% endfor %}
     </table>
-    <small>Last updated {{ new_words_ago }} minute{{ new_words_ago|pluralize }} ago</small>
+    <p>Last updated {{ new_words_ago }} minute{{ new_words_ago|pluralize }} ago</p>
     </div>
 
 <h2>New Links</h2>
@@ -64,7 +64,7 @@
         </tr>
         {% endfor %}
     </table>
-    <small>Last updated {{ new_links_ago }} minute{{ new_links_ago|pluralize }} ago</small>
+    <p>Last updated {{ new_links_ago }} minute{{ new_links_ago|pluralize }} ago</p>
     </div>
 
 {% include "footer.html" %}

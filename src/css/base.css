@@ -7,3 +7,27 @@ font-family: "M+ 1m", monospace;
 body {
 width: 640px;
 }
+
+#counts table,
+#top-links table,
+#new-words table,
+#new-links table {
+width: 100%;
+}
+
+#counts table tr > *:first-child,
+#top-links table tr > *:first-child,
+#new-words table tr > *:first-child,
+#new-links table tr > *:first-child {
+text-align: left;
+}
+
+#counts table tr > *:nth-child(2),
+#counts table tr > *:nth-child(3),
+#top-links table tr > th:nth-child(2),
+#top-links table tr > td:nth-child(4),
+#new-words table tr > *:nth-child(2),
+#new-links table tr > th:nth-child(2),
+#new-links table tr > td:nth-child(4) {
+text-align: right;
+}
