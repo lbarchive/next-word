@@ -37,7 +37,7 @@
         </tr>
         {% endfor %}
     </table>
-    <small>Last updated {{ top_in_ago }} minute{{ top_in_ago|pluralize }} ago</small>
+    <p>Last updated {{ top_in_ago }} minute{{ top_in_ago|pluralize }} ago</p>
     </div>
 <h2>Top Outs</h2>
     <div id="outs">
@@ -55,7 +55,7 @@
         </tr>
         {% endfor %}
     </table>
-    <small>Last updated {{ top_out_ago }} minute{{ top_out_ago|pluralize }} ago</small>
+    <p>Last updated {{ top_out_ago }} minute{{ top_out_ago|pluralize }} ago</p>
     </div>
 {% include "discussion.html" %}
 {% include "footer.html" %}

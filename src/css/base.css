@@ -30,6 +30,8 @@ border: none;
 -moz-border-radius: 5px;
 border-radius: 5px; 
 color: #ccc;
+font-size: 1.2em;
+padding: 2px;
 }
 
 button:hover,
@@ -41,6 +43,14 @@ button:focus,
 input:focus {
 background-color: #848;
 }
+
+/* Link Form Page */
+
+#link-form {
+font-size: 1.2em;
+}
+
+/* Statistics Page */
 
 #counts table,
 #top-links table,

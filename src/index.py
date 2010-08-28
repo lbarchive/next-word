@@ -117,6 +117,7 @@ class MainHandler(webapp.RequestHandler):
         template_values = {
             'title': 'What Next?',
             'req': req,
+            'linkline_ascii': '+%s+' % ('-' * len(req['word'].display_word)),
             'next': next,
             'top_out': top_out,
             'top_out_ago': top_out_ago,
