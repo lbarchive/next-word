@@ -12,16 +12,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Website       : http://nextword.thetinybit.com
-# Creation Date : 2008-06-04T04:20:18+0800
-#
-# Author        : Yu-Jie Lin
-# Author Website: http://thetinybit.com
-
-__version__ = '$Revision: 15 $'
-__date__ = '$Date: 2008-06-14 13:14:17 +0800 (Sat, 14 Jun 2008) $'
-# $Source$
 
 
 import logging
@@ -36,45 +26,13 @@ from google.appengine.ext import db
 import model
 
 
-def get_word_ids(with_time=False):
-    try:
-        word_data = memcache.get('word_data')
-    except:
-        logging.info('memcache error on word_data')
-        word_ids = None
-    if word_data:
-        if with_time:
-            return word_data
-        else:
-            return word_data[0]
-
-    query = model.Word.all()
-    query.filter('enabled =', True)
-    word_ids = []
-    offset = 0
-    words = query.fetch(1000, offset)
-    while words:
-        for word in words:
-            # word_ids += will not work since 'long' type is not iterable
-            word_ids.append(word.key().id())
-        if len(words) < 1000:
-            break
-        offset += 1000
-        words = query.fetch(1000, offset)
-    word_data = (word_ids, time.time())
-    memcache.set('word_data', word_data, 3600)
-    if with_time:
-        return word_data
-    else:
-        return word_ids
-
-
 def get_random_word():
-    word_ids = get_word_ids()
-    word = None
-    if word_ids:
-        word = model.Word.get_by_id(word_ids[random.randrange(len(word_ids))])
-    return word
+
+  query = model.Word.all().filter('enabled =', True)
+  # XXX Even with SDK 1.3.6-7, the count() is still capped at 1000
+  count = query.count()
+
+  return query.fetch(1, offset=random.randint(0, count - 1))[0]
 
 
 def get_request(IP):
@@ -298,5 +256,3 @@ chd=s:%s&amp;chco=224499&amp;chxt=x,y&amp;chxl=0:|%s|%s|1:||%d|%d&amp;\
 chm=B,76A4FB,0,0,0&chf=bg,s,cccccc" \
     % (norm_data, date_range[0].strftime('%b %d'),
         date_range[1].strftime('%b %d'), max_value / 2, max_value)
-
-# vim: set tw=78:
