@@ -35,6 +35,19 @@ from google.appengine.ext import db
 import nextword
 
 
+def get_count(q):
+
+  r = q.fetch(1000)
+  count = 0 
+  while True:
+    count += len(r)
+    if len(r) < 1000:
+      break
+    q.filter('__key__ >', r[-1])
+    r = q.fetch(1000)
+  return count
+
+
 class Word(db.Model):
     # Like ID
     word = db.StringProperty()
@@ -103,8 +116,9 @@ class Word(db.Model):
             count = None
         if count:
             return count
-        word_ids = nextword.get_word_ids()
-        count = (len(word_ids), time.time())
+        
+        query = Word.all(keys_only=True).filter('enabled =', True).order('__key__')
+        count = (get_count(query), time.time())
         memcache.set('word_count', count, 3600)
         return count
 
@@ -200,15 +214,15 @@ class Link(db.Model):
             count = None
         if count:
             return count
-        query = Link.all()
+        
+        link_count = unique_link_count = get_count(
+            Link.all(keys_only=True).filter('count =', 1).order('__key__'))
+
+        query = Link.all().filter('count >', 1)
         offset = 0
-        link_count = 0L
-        unique_link_count = 0L
         links = query.fetch(1000, offset)
         while links:
-            unique_link_count += len(links)
-            for link in links:
-                link_count += link.count
+            link_count += sum([link.count for link in links])
             if len(links) < 1000:
                 break
             offset += 1000
@@ -239,5 +253,3 @@ class LinkCount(db.Model):
     count = db.IntegerProperty(default=1)
     # The count for which date
     date = db.DateProperty(auto_now_add=True)
-
-# vim: set tw=78:

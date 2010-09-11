@@ -249,10 +249,10 @@ def get_gchart_month(data, date_range):
     c = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     # Normalize data
     max_value = max(data) or 1
+    mid_value = str(max_value / 2) if max_value != 1 else ''
     norm_data = "".join([c[int(61.0 * count / max_value)] for count in data])
-    # FIXME max_value = 1
     return "http://chart.apis.google.com/chart?cht=lc&amp;chs=640x200&amp;\
-chd=s:%s&amp;chco=224499&amp;chxt=x,y&amp;chxl=0:|%s|%s|1:||%d|%d&amp;\
+chd=s:%s&amp;chco=224499&amp;chxt=x,y&amp;chxl=0:|%s|%s|1:|0|%s|%d&amp;\
 chm=B,76A4FB,0,0,0&chf=bg,s,cccccc" \
     % (norm_data, date_range[0].strftime('%b %d'),
-        date_range[1].strftime('%b %d'), max_value / 2, max_value)
+        date_range[1].strftime('%b %d'), mid_value, max_value)

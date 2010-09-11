@@ -16,8 +16,6 @@
 #
 # Website       : http://nextword.yjl.im/
 # Creation Date : 2008-06-04T03:49:54+0800
-#
-# Author        : Yu-Jie Lin
 
 
 import logging
